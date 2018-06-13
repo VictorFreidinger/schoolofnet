@@ -2,21 +2,23 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Contato - ChatSchool</title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">    
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons"  rel="stylesheet">
-    <link href="css/pages/contato.css" rel="stylesheet">
+    <link href="css/pages/contato.min.css" rel="stylesheet">
 </head>
 <body>
     <header id="header" class="page-contato">
     	<div class="container">
     		<div class="row">
-    			<div class="col col-desktop-3">
+    			<div class="col col-desktop-3 col-6">
     				<a href="index.html">
     					<img src="images/logo.png" alt="logo">
     				</a>
     			</div>
-    			<div class="col col-desktop-9">
+    			<div class="col col-desktop-9 col-6">
     				<nav>
     					<ul>
     						<li><a href="index.html">Home</a></li>
@@ -43,8 +45,9 @@
                 Lorem ipsum dolor sit amet. Proin gravida nibh vel velit auctor aliquet.
             </p>
             <div class="container">
-                <form class="row">
-                    <div class="col col-desktop-6">
+                <!-- https://github.com/dwyl/html-form-send-email-via-google-script-without-server -->
+                <form action="https://script.google.com/macros/s/AKfycbwLhiDzfUvCMpsCCc9jrISaklYnRby0SNDK69KnIwgCOYvO9lc/exec" class="row" method="post">
+                    <div class="col col-desktop-6 col-6">
                         <div class="input-control">
                             <input id="nome" type="text" name="nome" required placeholder="Informe o nome">
                             <label for="nome">Nome*</label>
@@ -58,13 +61,13 @@
                             <label for="telefone">Telefone</label>
                         </div>
                     </div>
-                    <div class="col col-desktop-6">
+                    <div class="col col-desktop-6 col-6">
                         <div class="input-control">
                             <textarea name="mensagem" id="mensagem" cols="30" rows="10" placeholder="Mensagem..."></textarea>
                             <label for="mensagem">Mensagem</label>
                         </div>
                     </div>
-                    <input type="submit" value="Salvar" class="btn orange">
+                    <input type="submit" value="Enviar" class="btn orange">
                 </form>
             </div>            
         </section>
@@ -76,7 +79,7 @@
                     <p><a href=""><img src="images/logo.png" alt="Logo da ChatSchool"></a></p>
                     <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
                 </div>
-                <div class="col col-offset-desktop-1 col-desktop-2">
+                <div class="col col-offset-desktop-1 col-desktop-2 col-2">
                     <h3>Menu</h3>
                     <nav>
                         <ul>
@@ -88,7 +91,7 @@
                         </ul>
                     </nav>
                 </div>
-                <div class="col col-desktop-3 social">
+                <div class="col col-desktop-3 social col-4">
                     <a href=""><img src="images/social-facebook.png" alt="logo_facebook"></a>
                     <a href=""><img src="images/social-twitter.png" alt="logo_twitter"></a>
                     <a href=""><img src="images/social-youtube.png" alt="logo_youtube"></a>
@@ -98,6 +101,24 @@
     </footer>
     <div id="copyright">
             &copy; Victor Freidinger - 2018 - Todos os direitos reservados
-        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+        $('form').submit(function(event) {
+            event.preventDefault();
+            $('form input[type="submit"]').val('Aguarde...').attr('disabled', true);
+            $.ajax({
+                type: $('form').attr('method'), 
+                url: $('form').attr('action'), 
+                data: $('form').serialize(), 
+                success: function () {
+                    alert('Email enviado com sucesso!');
+                    $('form').trigger('reset');
+                    $('form input[type="submit"]').val('Enviar').attr('disabled', false);
+                }
+            });
+        })
+    </script>
+
 </body>
 </html>

@@ -28,3 +28,14 @@
 	display: none;
 }
 
+#img-box img {
+	max-width: 100%;
+	height: auto;
+}
+
+@media (max-width: 992px) {
+	#img-box {
+		text-align: center;
+	}
+}
+
