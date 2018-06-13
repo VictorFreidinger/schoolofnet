@@ -1,7 +1,7 @@
 *{box-sizing:border-box}a{text-decoration:none}body{font-family:'Open Sans',sans-serif;margin:0;padding:0;font-size:14px}p{margin:10px 0 10px 0}
 /**
  * Cálculo colunas:
- * largura_unica_porcentagem = 100 / maximo_colunas
+ * largura_unica_porcentagem = 100 / maximo_colunas 
  *
  * Multiplicamos largura_unica_porcentagem pelo tamanho da coluna
  */
